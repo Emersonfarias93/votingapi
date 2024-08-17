@@ -1,8 +1,10 @@
 package br.com.emersonfarias.votingapi.models;
 
 import jakarta.persistence.*;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 public class Voter {
@@ -59,5 +61,9 @@ public class Voter {
 
     public void setSnActive(Boolean snActive) {
         this.snActive = snActive;
+    }
+
+    public Optional<ResponseEntity<Object>> map(ResponseEntity.BodyBuilder ok) {
+        return Optional.empty();
     }
 }

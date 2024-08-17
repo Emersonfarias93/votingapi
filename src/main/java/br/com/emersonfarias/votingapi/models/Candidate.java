@@ -19,6 +19,9 @@ public class Candidate {
     private LocalDateTime dateRegister;
     @Column(nullable = false)
     private Boolean snActive;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    public Position position;
 
     public Candidate() {
     }
