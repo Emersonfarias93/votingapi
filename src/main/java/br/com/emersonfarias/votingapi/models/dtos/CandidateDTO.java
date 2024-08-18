@@ -1,38 +1,16 @@
-package br.com.emersonfarias.votingapi.models;
-
-import com.fasterxml.jackson.annotation.*;
-import jakarta.persistence.*;
+package br.com.emersonfarias.votingapi.models.dtos;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Candidate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false)
+public class CandidateDTO {
     private String name;
-    @Column(nullable = false)
     private String party;
-    @Column(nullable = false, unique = true)
     private Integer plate;
-    @Column(nullable = false)
     private LocalDateTime dateRegister;
-    @Column(nullable = false)
     private Boolean snActive;
-    @ManyToOne
-    @JoinColumn(name = "position_id", nullable = false)
-    public Position position;
+    private Long positionId;
 
-    public Candidate() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CandidateDTO() {
     }
 
     public String getName() {
@@ -75,11 +53,11 @@ public class Candidate {
         this.snActive = snActive;
     }
 
-    public Position getPosition() {
-        return position;
+    public Long getPositionId() {
+        return positionId;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPositionId(Long positionId) {
+        this.positionId = positionId;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/position")
@@ -23,30 +24,40 @@ public class PositionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Position> findById(@PathVariable Long id) {
-        return positionService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        if (positionService.findById(id).isPresent()) {
+            return ResponseEntity.ok(positionService.findById(id).get());
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
-    public ResponseEntity<Position> create(@RequestBody Position position) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(positionService.save(position));
+    public ResponseEntity<List<Position>> create(@RequestBody List<Position> position) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(positionService.saveAll(position));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Position> update(@PathVariable Long id, @RequestBody Position position) {
-        if (!positionService.findById(id).isPresent()) {
+
+        Optional<Position> existingPositionOpt = positionService.findById(id);
+
+        if (!existingPositionOpt.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        position.setId(id);
-        return ResponseEntity.ok(positionService.save(position));
+        Position existingPosition = existingPositionOpt.get();
+        existingPosition.setDescription(position.getDescription());
+        Position updatedPosition = positionService.save(existingPosition);
+
+        return ResponseEntity.ok(updatedPosition);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+
         if (!positionService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
+
         positionService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

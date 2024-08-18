@@ -27,11 +27,11 @@ public class PositionService {
         return positionRepository.save(Position);
     }
 
-    public void deleteById(Long id) {
-        positionRepository.deleteById(id);
+    public List<Position> saveAll(List<Position> Position) {
+        return positionRepository.saveAll(Position);
     }
 
-    public Position update(Position Position) {
-        return positionRepository.save(Position);
+    public void deleteById(Long id) {
+        positionRepository.deleteById(id);
     }
 }
