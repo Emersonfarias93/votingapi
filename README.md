@@ -51,4 +51,4 @@ Mencione as ferramentas que você usou para criar seu projeto
 * **Emerson de Farias** - *Documentação* - [Emersonfarias93](https://github.com/Emersonfarias93)
 
 ---
-⌨️ com ❤️ por [Emersonfarias93](https://gist.github.com/Emersonfarias93)
+⌨️ por [Emersonfarias93](https://gist.github.com/Emersonfarias93).
