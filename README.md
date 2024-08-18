@@ -4,8 +4,7 @@ Projeto para mostrar conhecimento para desafio de Pleno.
 
 ### 📋 Diagrama do banco de dados.
 
-![img.png](img.png)
-
+![img.png](src/main/resources/static/img.png)
 
 ## 🚀 Começando
 
@@ -34,7 +33,7 @@ cd votingapi
 
 mvn spring-boot run
 ```
-
+Links para acesso a Swagger: http://localhost:8083/swagger-ui/index.html
 
 ## 🛠️ Construído com
 
