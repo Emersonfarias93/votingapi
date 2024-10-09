@@ -1,13 +1,7 @@
-version: '3.8'
-
 services:
   backend:
-    image: openjdk:17
-    container_name: votingapi-backend
-    working_dir: /app
-    volumes:
-      - ./target:/app
-    command: ["java", "-jar", "app.jar"]
+    build: .
+    container_name: spring-backend
     ports:
       - "8080:8080"
     depends_on:
@@ -16,7 +10,7 @@ services:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mydb
       - SPRING_DATASOURCE_USERNAME=myuser
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_PASSWORD=mypassword
 
   db:
     image: postgres:13
@@ -28,7 +22,7 @@ services:
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: 
+      POSTGRES_PASSWORD: mypassword
 
 volumes:
   postgres-data:
